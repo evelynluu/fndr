@@ -1,0 +1,3 @@
+document.getElementById("register") = function(){
+    
+};
