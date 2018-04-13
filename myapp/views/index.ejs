@@ -3,9 +3,9 @@
   <head>
     <title><%= title %></title>
     <!-- Stylesheets -->
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
- 
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
    <!-- Scripts -->
    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
      crossorigin="anonymous"></script>
@@ -21,17 +21,23 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav navbar-right">
+          <ul class="navbar-nav ml-auto">
             <!-- <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li> -->
+            <% if (loggedIn) { %>
+              <!-- Logout -->
+              <li class="nav-item">
+                <a id="logout-link" class="nav-link" href="#">Logout</a>
+              </li>
+            <% } else { %>
             <!-- Register  -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Register
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <form id="register-form" class="navbar-form navbar-left">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <form id="register-form" class="navbar-form">
                     <input id="register-email" type="email" class="form-control" placeholder="Email">
                     <input id="register-pw" type="password" class="form-control" placeholder="Password">
                     <button id="register" type="submit" class="btn btn-primary">Register</button>
@@ -43,25 +49,27 @@
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Login
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <form id="login-form" class="navbar-form navbar-left">
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <form id="login-form" class="navbar-form">
                       <input id="login-email" type="email" class="form-control" placeholder="Email">
                       <input id="login-pw" type="password" class="form-control" placeholder="Password">
                       <button id="login" type="submit" class="btn btn-primary">Login</button>
                     </form>
                   </div>
                 </li>
+                <% } %>
           </ul>
         </div>
       </nav>
 
-    <!-- Rest of body -->
-    <br/>
-    <% if (loggedIn) { %>
-      <h2><%= ifTitle %></h2>
-    <% } else { %>
-      <h2><%= elseTitle %></h2>
-    <% } %>
-
+      <!-- Rest of body -->
+      <div class="content">
+        <br/>
+        <% if (loggedIn) { %>
+          <h2><%= ifTitle %></h2>
+        <% } else { %>
+          <h2><%= elseTitle %></h2>
+        <% } %>
+    </div>
   </body>
 </html>

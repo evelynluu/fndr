@@ -9,16 +9,18 @@ $(document).ready(function () {
   
       var emailText = emailRegister.val()
       var passwordText = pwRegister.val()
-  
-      $.ajax({
-        url: "/users",
-        method: "POST",
-        data: { email: emailText, password: passwordText }
-      })
-        .done(function (data) {
-          console.log(data)
-          window.location.assign('/register');
+      
+      if(emailText != "" && passwordText != ""){
+        $.ajax({
+          url: "/users",
+          method: "POST",
+          data: { email: emailText, password: passwordText }
         })
+          .done(function (data) {
+            console.log(data)
+            window.location.assign('/register');
+          })
+        }
     })
 
     var emailLogin = $('#login-email')
@@ -31,14 +33,22 @@ $(document).ready(function () {
         var emailText = emailLogin.val()
         var passwordText = pwLogin.val()
     
-        $.ajax({
-          url: "/users",
-          method: "POST",
-          data: { email: emailText, password: passwordText }
-        })
-          .done(function (data) {
-            console.log(data)
-            window.location.assign('/login');
+        if(emailText != "" && passwordText != ""){
+          $.ajax({
+            url: "/users",
+            method: "POST",
+            data: { email: emailText, password: passwordText }
           })
+            .done(function (data) {
+              console.log(data)
+              window.location.assign('/login');
+            })
+          }
+      })
+
+      var logout = $('#logout-link')
+
+      logout.on('click', function(event){
+        window.location.assign('/');
       })
   })

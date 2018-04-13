@@ -15,14 +15,17 @@ router.get('/login', function(req, res, next){
   res.render('index', {
     title: 'FNDR',
     loggedIn: true,
-    ifTitle: 'FNDR - Logged In',
+    ifTitle: 'Homepage - Logged In',
     elseTitle: 'Error'
   });
 });
 
 router.get('/register', function(req, res, next){
   res.render('index', {
-    title: 'FNDR - Registered'
+    title: 'FNDR',
+    loggedIn: true,
+    ifTitle: 'Homepage - Registered & Logged In',
+    elseTitle: 'Error'
   });
 });
 
