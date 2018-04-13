@@ -5,7 +5,14 @@
     <!-- Stylesheets -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
- </head>
+ 
+   <!-- Scripts -->
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+     crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+   <script src='/javascripts/script.js'></script>
+  </head>
   <body>
     <!-- Nav Bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,9 +31,9 @@
                   Register
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <form class="navbar-form navbar-left">
-                    <input id="register-email" type="text" class="form-control" placeholder="Email">
-                    <input id="register-pw" type="text" class="form-control" placeholder="Password">
+                  <form id="register-form" class="navbar-form navbar-left">
+                    <input id="register-email" type="email" class="form-control" placeholder="Email">
+                    <input id="register-pw" type="password" class="form-control" placeholder="Password">
                     <button id="register" type="submit" class="btn btn-primary">Register</button>
                   </form>
                 </div>
@@ -37,9 +44,9 @@
                     Login
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <form class="navbar-form navbar-left">
-                      <input id="login-email" type="text" class="form-control" placeholder="Email">
-                      <input id="login-pw" type="text" class="form-control" placeholder="Password">
+                    <form id="login-form" class="navbar-form navbar-left">
+                      <input id="login-email" type="email" class="form-control" placeholder="Email">
+                      <input id="login-pw" type="password" class="form-control" placeholder="Password">
                       <button id="login" type="submit" class="btn btn-primary">Login</button>
                     </form>
                   </div>
@@ -49,20 +56,12 @@
       </nav>
 
     <!-- Rest of body -->
+    <br/>
+    <% if (loggedIn) { %>
+      <h2><%= ifTitle %></h2>
+    <% } else { %>
+      <h2><%= elseTitle %></h2>
+    <% } %>
 
-    <h1><%= title %></h1>
-    <form>
-      <label>Email</label>
-      <input id="email" type="email" name="email" size="30"/>
-      <label>Password</label>
-      <input id="password" type="password" name="password" size="30"/>
-      <input id="register" type="submit" value="Register">
-    </form>
-
-    <!-- Scripts -->
-    <script type="javascript" src='/javascripts/script.js'></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </body>
 </html>

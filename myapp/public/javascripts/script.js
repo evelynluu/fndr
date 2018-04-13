@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     var emailRegister = $('#register-email')
     var pwRegister = $('#register-pw')
-    var register = $('#register');
+    var register = $('#register')
   
     register.on('click', function(event) {
       event.preventDefault()
@@ -17,6 +17,7 @@ $(document).ready(function () {
       })
         .done(function (data) {
           console.log(data)
+          window.location.assign('/register');
         })
     })
 
@@ -37,6 +38,7 @@ $(document).ready(function () {
         })
           .done(function (data) {
             console.log(data)
+            window.location.assign('/login');
           })
       })
   })
