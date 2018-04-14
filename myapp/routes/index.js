@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { 
     title: 'FNDR',
     loggedIn: false,
-    ifTitle: 'Error',
-    elseTitle: 'FNDR' 
+    ifStatement: 'Error',
+    elseStatement: 'FNDR' 
   });
 });
 
@@ -15,8 +15,8 @@ router.get('/login', function(req, res, next){
   res.render('index', {
     title: 'FNDR',
     loggedIn: true,
-    ifTitle: 'Homepage - Logged In',
-    elseTitle: 'Error'
+    ifStatement: 'Homepage - Logged In',
+    elseStatement: 'Error'
   });
 });
 
@@ -24,8 +24,8 @@ router.get('/register', function(req, res, next){
   res.render('index', {
     title: 'FNDR',
     loggedIn: true,
-    ifTitle: 'Homepage - Registered & Logged In',
-    elseTitle: 'Error'
+    ifStatement: 'Homepage - Registered & Logged In',
+    elseStatement: 'Error'
   });
 });
 
