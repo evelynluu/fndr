@@ -21,14 +21,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
 // Sessions
 app.use(session({ 
   secret: 'theportal', 
   cookie: { maxAge: 1000 * 60 * 60 * 24 } 
 }));
+
+// Routes
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

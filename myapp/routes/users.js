@@ -70,17 +70,12 @@ router.post('/register', function(req, res, next){
       // Create a new user
       UserModel.create(user)
       .then((createdUser) => {
-        console.log(createdUser)
-        console.log('creating user...');
-
         req.session.userId = createdUser._id;
         res.cookie('userId', String(createdUser._id));
 
-        console.log(createdUser._id);
-        console.log(req.session.userId);
-
         console.log('Registration success');
         res.json({ data: createdUser });
+        res.redirect('http://localhost:3000/profile');
       })
       .catch((error) => {
         res.json({ error })
