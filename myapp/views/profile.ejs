@@ -23,9 +23,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if (loggedIn) { %>
-              <li class="nav-item active">
+             <li class="nav-item active">
                 <a class="nav-link" href="profile">Profile<span class="sr-only">(current)</span></a>
-              </li>
+                </li>
               <!-- Logout -->
               <li class="nav-item">
                 <a id="logout-link" class="nav-link" href="#">Logout</a>
@@ -64,12 +64,13 @@
 
       <!-- Rest of body -->
       <div class="content">
-        <br/>
-        <% if (loggedIn) { %>
-          <h2><%= ifStatement %></h2>
-        <% } else { %>
-          <h2><%= elseStatement %></h2>
-        <% } %>
+        <h1><%= title %></h1>
+
+        <form id="user-info-form" class="navbar-form">
+            <input id="first-name" type="text" class="form-control" placeholder="First Name">
+            <input id="last-name" type="text" class="form-control" placeholder="Last Name">
+            <button id="update-btn" type="submit" class="btn btn-primary">Update</button>
+          </form>
     </div>
   </body>
 </html>
