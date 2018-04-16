@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,6 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// Sessions
+app.use(session({ 
+  secret: 'theportal', 
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } 
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

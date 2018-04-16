@@ -41,7 +41,9 @@ function saltHashPassword(userpassword) {
   return passwordData;
 }
 
-router.post('/', function(req, res, next){
+// Register
+router.post('/register', function(req, res, next){
+
   var body = req.body;
   var email = body.email;
   var password = body.password;
@@ -67,13 +69,62 @@ router.post('/', function(req, res, next){
 
       // Create a new user
       UserModel.create(user)
-      .then(() => {
+      .then((createdUser) => {
+        console.log(createdUser)
+        console.log('creating user...');
+
+        req.session.userId = createdUser._id;
+        res.cookie('userId', String(createdUser._id));
+
+        console.log(createdUser._id);
+        console.log(req.session.userId);
+
         console.log('Registration success');
-        res.json({ data: user });
+        res.json({ data: createdUser });
       })
       .catch((error) => {
         res.json({ error })
       }) 
+    }
+    // If the user does exist
+    else if(docs.length > 0){
+        console.log("User already exists. Cannot register.");
+        res.redirect('http://localhost:3000');
+    }
+    else{
+      console.log("General login/registration error")
+    }
+   });
+});
+
+// Logging in
+router.post('/login', function(req, res, next){
+  
+  if (req.session.userId) {
+    res.redirect('http://localhost:3000')
+    return
+  }
+
+  var body = req.body;
+  var email = body.email;
+  var password = body.password;
+  var salt = "";
+
+  // Empty user var
+  var user = {
+    email,
+    password,
+    salt
+  };
+
+   // Find to see if the User exists
+   UserModel.find({'email': email}, function(err, docs){
+    if (err) return handleError(err);
+  
+    // If user doesn't exist
+    if(docs.length == 0){
+      console.log("User doesn't exist. Cannot login.");
+      res.redirect('http://localhost:3000');
     }
     // If the user does exist
     else if(docs.length > 0){
@@ -85,11 +136,15 @@ router.post('/', function(req, res, next){
       
       // See if entered password hash matches the saved hash
       if(user.password == enteredPassword.passwordHash){
+        req.session.userId = user._id;
+        res.cookie('userId', String(user._id));
+
         console.log('Login Success');
         res.json({ data: user });
       }
       else{
         console.log('Login Error');
+        res.redirect('http://localhost:3000');
       }
     }
     else{

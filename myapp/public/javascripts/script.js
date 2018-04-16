@@ -6,7 +6,7 @@ $(document).ready(function () {
       var logout = $('#logout-link')
 
       logout.on('click', function(event){
-        window.location.assign('/');
+        window.location.assign('/logout');
       })
   })
 
@@ -19,13 +19,13 @@ $(document).ready(function () {
   
       if(emailText != "" && passwordText != ""){
         $.ajax({
-          url: "/users",
+          url: "/users" + route,
           method: "POST",
           data: { email: emailText, password: passwordText }
         })
           .done(function (data) {
             console.log(data)
-            window.location.assign(route);
+           // window.location.assign(route);
           })
         }
     })
