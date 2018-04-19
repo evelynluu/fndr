@@ -3,50 +3,44 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(req.session)
-  res.render('index', { 
-    title: 'FNDR',
-    loggedIn: false,
-    ifStatement: 'Error',
-    elseStatement: 'FNDR' 
+    res.render('index', { 
+      title: 'FNDR Index', 
+    });
+});
+
+router.get('/home', function(req, res, next){
+  if (!req.session.userId) {
+    return res.redirect('/');
+  }
+  res.render('home', { 
+    title: 'FNDR Home'
   });
 });
 
 router.get('/register', function(req, res, next){
-  res.render('index', {
-    title: 'FNDR',
-    loggedIn: true,
-    ifStatement: 'Homepage - Registered & Logged In',
-    elseStatement: 'Error'
+  res.render('home', {
+    title: 'Homepage - Registered & Logged In'
   });
 });
 
 router.get('/login', function(req, res, next){
-  res.render('index', {
-    title: 'FNDR',
-    loggedIn: true,
-    ifStatement: 'Homepage - Logged In',
-    elseStatement: 'Error'
+  res.render('home', {
+    title: 'Homepage - Logged In'
   });
 });
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', function(req, res) {
   if (req.session) {
-    // delete session object
-    req.session.destroy(function(err) {
-      if(err) {
-        return next(err);
-      } else {
-        return res.redirect('/');
-      }
-    });
+    req.session = null;
+    res.cookie('userId', '');
+    res.redirect('/');
   }
+  console.log(req.session)
 });
 
 router.get('/profile', function(req, res, next){
   res.render('profile', {
-    title: 'Profile',
-    loggedIn: true
+    title: 'Profile'
   });
 });
 

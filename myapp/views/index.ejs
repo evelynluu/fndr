@@ -22,15 +22,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-            <% if (loggedIn) { %>
-              <li class="nav-item active">
-                <a class="nav-link" href="profile">Profile<span class="sr-only">(current)</span></a>
-              </li>
-              <!-- Logout -->
-              <li class="nav-item">
-                <a id="logout-link" class="nav-link" href="#">Logout</a>
-              </li>
-            <% } else { %>
             <!-- Register  -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,19 +48,13 @@
                     </form>
                   </div>
                 </li>
-                <% } %>
           </ul>
         </div>
       </nav>
 
       <!-- Rest of body -->
       <div class="content">
-        <br/>
-        <% if (loggedIn) { %>
-          <h2><%= ifStatement %></h2>
-        <% } else { %>
-          <h2><%= elseStatement %></h2>
-        <% } %>
+        <h1><%= title %></h1>
     </div>
   </body>
 </html>

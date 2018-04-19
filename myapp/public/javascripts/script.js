@@ -25,7 +25,7 @@ $(document).ready(function () {
         })
           .done(function (data) {
             console.log(data)
-           // window.location.assign(route);
+            window.location.assign(route);
           })
         }
     })

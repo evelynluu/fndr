@@ -75,7 +75,6 @@ router.post('/register', function(req, res, next){
 
         console.log('Registration success');
         res.json({ data: createdUser });
-        res.redirect('http://localhost:3000/profile');
       })
       .catch((error) => {
         res.json({ error })
@@ -139,7 +138,7 @@ router.post('/login', function(req, res, next){
       }
       else{
         console.log('Login Error');
-        res.redirect('http://localhost:3000');
+        res.redirect('/');
       }
     }
     else{

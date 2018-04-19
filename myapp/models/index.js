@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 
 var Users = require('./users');
+var Restaurants = require('./restaurants');
 
 mongoose.connect('mongodb://localhost/', function(error) {
   if (error) throw error
@@ -8,5 +9,6 @@ mongoose.connect('mongodb://localhost/', function(error) {
 });
 
 module.exports = {
-  Users
+  Users,
+  Restaurants
 }
