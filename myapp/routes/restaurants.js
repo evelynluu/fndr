@@ -12,7 +12,7 @@ var RestaurantModel = models.Restaurants;
  */
 router.get('/search', function(req, res, next){
     
-    var apiKey = 'bc1fTxY3oPnC0ckGwOc254QAmwE0_C3Fu-0-Ym56gunmqyfmeUwdC6tOXJPREKtxBqVbIKXQVBoAhZ4rjUa2UtTAdRR7MSFS4jySZTbNTojfArHp35rL41HpZc3UWnYx';
+    var apiKey = '';
    
     axios.get('https://api.yelp.com/v3/businesses/search?latitude=33.650769&longitude=-117.840469&categories=restaurants', 
     {
